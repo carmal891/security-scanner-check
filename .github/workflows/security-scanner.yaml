@@ -16,3 +16,8 @@ jobs:
         run: |
           ls ${{ github.workspace }}
       - run: echo " This job's status is ${{ job.status }}."
+      - name: 'Secret Scanning Review Action'
+        uses: advanced-security/secret-scanning-review-action@v0
+        with:
+          fail-on-alert: true
+          fail-on-alert-exclude-closed: true
