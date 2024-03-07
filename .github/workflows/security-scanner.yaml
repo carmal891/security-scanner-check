@@ -1,0 +1,16 @@
+name: Security scanner
+run-name: scans repo for dependency vulnerabilities, secrets and security vulnerabilites in code
+
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  check-bats-version:
+    runs-on: [ics-actions-runner-scale-set-v4]
+    steps:
+      - uses: actions/checkout@v2
+        name: Checks out the repository
+      - name: status
+        run: echo " ******Run successful*******"

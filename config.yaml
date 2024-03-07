@@ -1,0 +1,10 @@
+# holds the applications configurations
+
+REDIS_HOST: "localhost"
+REDIS_PORT: 6379
+REDIS_DB: 0
+REDIS_PASSWORD: "awdqwe1231123"
+
+DB_HOST: "localhost"
+DB_PORT: 543
+DB_PASS: ""
