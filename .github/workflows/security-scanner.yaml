@@ -36,19 +36,20 @@ jobs:
           token: ${{ secrets.SECRET_SCAN_REVIEW_GITHUB_TOKEN }}
           fail-on-alert: false
           fail-on-alert-exclude-closed: true
-      #- name: 'Dependency Review'
-      #  uses: actions/dependency-review-action@v4
-      #  with:
-      #    fail-on-severity: moderate
-      - name: Dependency submission
-        uses: actions/go-dependency-submission@v2
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@v4
         with:
-            # Required: Define the repo path to the go.mod file used by the
-            # build target
-            go-mod-path: go.mod
-            #
-            # Optional: Define the path of a build target (a file with a
-            # `main()` function) If not defined, this Action will collect all
-            # dependencies used by all build targets for the module, which may
-            # include Go dependencies used by tests and tooling.
-            go-build-target: main.go
+          fail-on-severity: moderate
+          warn-only: true
+      #- name: Dependency submission
+      #  uses: actions/go-dependency-submission@v2
+      #  with:
+      #      # Required: Define the repo path to the go.mod file used by the
+      #      # build target
+      #      go-mod-path: go.mod
+      #      #
+      #      # Optional: Define the path of a build target (a file with a
+      #      # `main()` function) If not defined, this Action will collect all
+      #      # dependencies used by all build targets for the module, which may
+      #      # include Go dependencies used by tests and tooling.
+      #      go-build-target: main.go
