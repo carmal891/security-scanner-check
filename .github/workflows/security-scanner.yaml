@@ -1,6 +1,16 @@
 name: GitHub Actions Demo
 run-name: ${{ github.actor }} is testing out GitHub Actions
 on: [push,pull_request]
+
+# The API requires write permission on the repository to submit dependencies
+permissions:
+  contents: write
+
+# Environment variables to configure Go and Go modules. Customize as necessary
+env:
+  GOPROXY: '' # A Go Proxy server to be used
+  GOPRIVATE: '' # A list of modules are considered private and not requested from GOPROXY
+
 jobs:
   Explore-GitHub-Actions:
     runs-on: ubuntu-latest
@@ -10,6 +20,10 @@ jobs:
       - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
+      - uses: actions/setup-go@v3
+        with:
+          go-version: ">=1.18.0"
+
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "The workflow is now ready to test your code on the runner."
       - name: List files in the repository
@@ -26,3 +40,15 @@ jobs:
         uses: actions/dependency-review-action@v4
         with:
           fail-on-severity: moderate
+      - name: Dependency submission
+        uses: actions/go-dependency-submission@v2
+        with:
+            # Required: Define the repo path to the go.mod file used by the
+            # build target
+            go-mod-path: go-example/go.mod
+            #
+            # Optional: Define the path of a build target (a file with a
+            # `main()` function) If not defined, this Action will collect all
+            # dependencies used by all build targets for the module, which may
+            # include Go dependencies used by tests and tooling.
+            go-build-target: go-example/cmd/octocat.go
