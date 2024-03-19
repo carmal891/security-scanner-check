@@ -17,4 +17,8 @@ jobs:
           token: ${{ secrets.SECRET_SCAN_REVIEW_GITHUB_TOKEN }}
           docker_name: 'owasp/zap2docker-stable'
           target: 'http://testphp.vulnweb.com/'
+          artifact_name: 'test_scan'
           cmd_options: '-a'
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
