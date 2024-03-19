@@ -19,13 +19,10 @@ jobs:
           target: 'http://testphp.vulnweb.com/'
           artifact_name: 'test_scan'
           cmd_options: '-a'
+          fail_action: true
+      
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      - name: Generate Report
-        uses: actions/upload-artifact@v2
-        with:
-          name: ZAP_SCAN_REPORT
-          path: ${{ github.workspace }}/report_html.html
-          retention-days: 5
+      
       
