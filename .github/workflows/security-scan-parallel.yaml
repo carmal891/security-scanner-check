@@ -21,7 +21,6 @@ jobs:
       #Checkout repo
       - name: Check out repository code
         uses: actions/checkout@v4
-        run: echo "Codebase is checked out "
       #install go
       - name: Install Go  
       - uses: actions/setup-go@v3
@@ -32,7 +31,8 @@ jobs:
       - name: List files in the repository
         run: |
           ls ${{ github.workspace }}
-      # print job status 
+      # print job status
+      - name: Job status
       - run: echo " This job's status is ${{ job.status }}."
   Secret-Scanning-Job:
       - name: 'Secret Scanning Review Action'
