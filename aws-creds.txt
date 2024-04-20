@@ -4,3 +4,7 @@ export AWS_SECRET_ACCESS_KEY=pGSMoOyHQ580
 export AWS_SESSION_TOKEN=pGSMoOyHQ5801293819r
 export AWS_TEMPORARY_ACCESS_KEY_ID=iquwpioqw12341
 export AWS_SECRET_ACCESS_KEY=askfdqd9128410ERTY
+
+
+amazon_oauth_client_id=your_amazon_oauth_client_id_here
+amazon_oauth_client_secret=your_amazon_oauth_client_secret_here
