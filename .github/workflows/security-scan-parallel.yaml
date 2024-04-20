@@ -35,6 +35,11 @@ jobs:
       - name: Job status
         run: echo " This job's status is ${{ job.status }}."
   Secret-Scanning-Job:
+      runs-on: ubuntu-latest
+      steps:
+       #Checkout repo
+      - name: Check out repository code
+        uses: actions/checkout@v4
       - name: Secret Scanning Review Action
         uses: advanced-security/secret-scanning-review-action@v0
         with:
@@ -42,13 +47,15 @@ jobs:
           fail-on-alert: false
           fail-on-alert-exclude-closed: true
   Dependency-Review-Job:
+      runs-on: ubuntu-latest
+      steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
       - name: Dependency Review
         uses: actions/dependency-review-action@v4
         with:
           fail-on-severity: moderate
           warn-only: true
-     
-
 
 
       
