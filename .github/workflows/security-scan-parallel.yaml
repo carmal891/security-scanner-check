@@ -12,7 +12,7 @@ env:
   GOPRIVATE: '' # A list of modules are considered private and not requested from GOPROXY
 
 jobs:
-  Explore-GitHub-Actions:
+  initial-setup-job:
     runs-on: ubuntu-latest
     steps:
       - run: echo " The job was automatically triggered by a ${{ github.event_name }} event."
@@ -35,11 +35,9 @@ jobs:
       - name: Job status
         run: echo " This job's status is ${{ job.status }}."
   Secret-Scanning-Job:
+      needs: initial-setup-job
       runs-on: ubuntu-latest
-      steps:
-       #Checkout repo
-      - name: Check out repository code
-        uses: actions/checkout@v4
+      steps:     
       - name: Secret Scanning Review Action
         uses: advanced-security/secret-scanning-review-action@v0
         with:
@@ -47,10 +45,9 @@ jobs:
           fail-on-alert: false
           fail-on-alert-exclude-closed: true
   Dependency-Review-Job:
+      needs: initial-setup-job
       runs-on: ubuntu-latest
       steps:
-      - name: Check out repository code
-        uses: actions/checkout@v4
       - name: Dependency Review
         uses: actions/dependency-review-action@v4
         with:
