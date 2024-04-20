@@ -8,3 +8,7 @@ REDIS_PASSWORD: "awdqwe1231123"
 DB_HOST: "localhost"
 DB_PORT: 543
 DB_PASS: ""
+
+DB_USERNAME : "postgres"
+DB_PASSWORD : "postgres"
+API_KEY : "asnfaispamopmco1231msa_232asfan"
