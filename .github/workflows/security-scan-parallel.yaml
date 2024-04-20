@@ -7,7 +7,6 @@ permissions:
   contents: write
   pull-requests: write
 
-
 # Environment variables to configure Go and Go modules. Customize as necessary
 env:
   GOPROXY: '' # A Go Proxy server to be used
@@ -56,6 +55,30 @@ jobs:
           fail-on-severity: moderate
           warn-only: false
           comment-summary-in-pr: always
+  CodeQL-Scanning-Job:
+      needs: initial-setup-job
+      runs-on: ubuntu-latest
+      permissions:
+        security-events: write
+        actions: read
+        contents: read
+      strategy:
+        fail-fast: false
+        matrix:
+          language: [ 'go'  ]
+      steps:
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v3
+        with:
+          languages: ${{ matrix.language }}
+      - name: Autobuild
+        uses: github/codeql-action/autobuild@v3
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v3
+        with:
+          category: "/language:${{matrix.language}}"
 
 
-      
+ 
+
+    
