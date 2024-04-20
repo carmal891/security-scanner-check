@@ -1,0 +1,54 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions
+on: [push,pull_request]
+
+# The API requires write permission on the repository to submit dependencies
+permissions:
+  contents: write
+
+# Environment variables to configure Go and Go modules. Customize as necessary
+env:
+  GOPROXY: '' # A Go Proxy server to be used
+  GOPRIVATE: '' # A list of modules are considered private and not requested from GOPROXY
+
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo " The job was automatically triggered by a ${{ github.event_name }} event."
+      - run: echo "This job is now running on a ${{ runner.os }} server hosted by GitHub!"
+      - run: echo "The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
+      #Checkout repo
+      - name: Check out repository code
+        uses: actions/checkout@v4
+      #install go
+      - name: Install Go  
+      - uses: actions/setup-go@v3
+        with:
+          go-version: ">=1.18.0"
+      - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "The workflow is now ready to test your code on the runner."
+      # list files in repo
+      - name: List files in the repository
+        run: |
+          ls ${{ github.workspace }}
+      # print job status 
+      - run: echo " This job's status is ${{ job.status }}."
+  Secret-Scanning-Job:
+      - name: 'Secret Scanning Review Action'
+        uses: advanced-security/secret-scanning-review-action@v0
+        with:
+          token: ${{ secrets.SECRET_SCAN_REVIEW_GITHUB_TOKEN }}
+          fail-on-alert: false
+          fail-on-alert-exclude-closed: true
+  Dependency-Review-Job:
+      - name: 'Dependency Review'
+        uses: actions/dependency-review-action@v4
+        with:
+          fail-on-severity: moderate
+          warn-only: true
+     
+
+
+
+      
