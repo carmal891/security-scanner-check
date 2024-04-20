@@ -5,14 +5,8 @@ on: [pull_request]
 # The API requires write permission on the repository to submit dependencies
 permissions:
   contents: write
-  actions: read
   pull-requests: write
-  security-events: write
 
-strategy:
-  fail-fast: true
-  matrix:
-    language: [ 'go'  ]
 
 # Environment variables to configure Go and Go modules. Customize as necessary
 env:
@@ -65,10 +59,14 @@ jobs:
   CodeQL-Scanning-Job:
       needs: initial-setup-job
       runs-on: ubuntu-latest
-      #permissions:
-      #  security-events: write
-      #  actions: read
-      #  contents: read
+      strategy:
+        fail-fast: true
+        matrix:
+          language: [ 'go'  ]
+      permissions:
+        security-events: write
+        actions: read
+        contents: read
       steps:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v3
