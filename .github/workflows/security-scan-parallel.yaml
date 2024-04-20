@@ -21,13 +21,13 @@ jobs:
       #Checkout repo
       - name: Check out repository code
         uses: actions/checkout@v4
+        run: echo "Codebase is checked out "
       #install go
       - name: Install Go  
       - uses: actions/setup-go@v3
         with:
           go-version: ">=1.18.0"
       - run: echo "The ${{ github.repository }} repository has been cloned to the runner."
-      - run: echo "The workflow is now ready to test your code on the runner."
       # list files in repo
       - name: List files in the repository
         run: |
