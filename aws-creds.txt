@@ -1,1 +1,1 @@
-export GH_TOKEN=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
+export GH_TOKEN=ghp_j5cvnBvtZkHSSj2DhDNiGemuj0KAtO3XF
