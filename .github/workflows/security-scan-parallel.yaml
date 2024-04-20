@@ -1,6 +1,6 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions
-on: [push,pull_request]
+name: CI/CD Security measures
+run-name: ${{ github.actor }} is testing CI/CD Security measures
+on: [pull_request]
 
 # The API requires write permission on the repository to submit dependencies
 permissions:
