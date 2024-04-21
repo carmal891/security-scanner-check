@@ -38,6 +38,8 @@ jobs:
           token: ${{ secrets.SECRET_SCAN_REVIEW_GITHUB_TOKEN }}
           fail-on-alert: true
           fail-on-alert-exclude-closed: false
+          patterns-path: .patterns
+
   Dependency-Review-Job:
       needs: initial-setup-job
       runs-on: ubuntu-latest
