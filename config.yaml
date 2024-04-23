@@ -1,10 +1,14 @@
 # holds the applications configurations
 
-REDIS_HOST: "localhost"
-REDIS_PORT: 6379
-REDIS_DB: 0
-REDIS_PASSWORD: "awdqwe1231123"
+ICS_REDIS_HOST: "localhost"
+ICS_REDIS_PORT: 6379
+ICS_REDIS_DB: 0
+ICS_REDIS_PASSWORD: "awdqwe1231123"
 
 DB_HOST: "localhost"
 DB_PORT: 543
 DB_PASS: ""
+
+DB_USERNAME : "postgres"
+DB_PASSWORD : "postgres"
+API_KEY : "asnfaispamopmco1231msa_232asfan"
